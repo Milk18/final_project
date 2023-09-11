@@ -1,63 +1,31 @@
 pipeline {
-    agent any
-
-    environment {
-        DOCKER_IMAGE_NAME = 'profile'
+  agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'docker build -t milk49/jenkins-docker-hub:1.0 .'
+      }
     }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // Check out your code from the repository
-                checkout scm
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Build a Docker image from your Flask code
-                    docker.build(env.DOCKER_IMAGE_NAME)
-                }
-            }
-        }
-
-        stage('Run pytest') {
-            steps {
-                script {
-                    // Run pytest inside the Docker container
-                    docker.image(env.DOCKER_IMAGE_NAME).inside {
-                        // Install pytest and any other dependencies
-                        sh 'pip install pytest'
-                        
-                        // Run pytest
-                        sh 'pytest'
-                    }
-                }
-            }
-        }
-
-        stage('Push Docker Image') {
-            when {
-                // Define conditions for when to push the Docker image (optional)
-                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
-            }
-            steps {
-                script {
-                    // Push the Docker image to a container registry (e.g., Docker Hub)
-                    docker.withRegistry('https://registry.example.com', 'your-registry-credentials') {
-                        docker.image(env.DOCKER_IMAGE_NAME).push()
-                    }
-                }
-            }
-        }
+    stage('Login') {
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
     }
-
-    post {
-        always {
-            // Clean up (optional)
-            cleanWs()
-            docker.image(env.DOCKER_IMAGE_NAME).remove()
-        }
+    stage('Push') {
+      steps {
+        sh 'docker push milk49/jenkins-docker-hub'
+      }
     }
+  }
+  post {
+    always {
+      sh 'docker logout'
+    }
+  }
 }
