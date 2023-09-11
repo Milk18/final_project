@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        bat 'docker push milk49/jenkins-docker-hub'
+        bat 'docker push milk49/jenkins-docker-hub:1.0'
       }
     }
   }
