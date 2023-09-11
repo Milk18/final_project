@@ -1,5 +1,5 @@
 pipeline {
-  agent win32
+  agent any
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
