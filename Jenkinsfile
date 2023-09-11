@@ -9,23 +9,23 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        cmd 'docker build -t milk49/jenkins-docker-hub:1.0 .'
+        bat 'docker build -t milk49/jenkins-docker-hub:1.0 .'
       }
     }
     stage('Login') {
       steps {
-        cmd 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage('Push') {
       steps {
-        cmd 'docker push milk49/jenkins-docker-hub'
+        bat 'docker push milk49/jenkins-docker-hub'
       }
     }
   }
   post {
     always {
-      cmd 'docker logout'
+      bat'docker logout'
     }
   }
 }
