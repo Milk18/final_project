@@ -14,7 +14,9 @@ pipeline {
     }
     stage('Login') {
       steps {
-        bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u milk49 -p milk12345678'
+        bat 'def username = DOCKERHUB_CREDENTIALS_USR'
+        bat 'def password = DOCKERHUB_CREDENTIALS_PSW'
+        bat "echo ${password} | docker login -u ${username} --password-stdin"
       }
     }
     stage('Push') {
