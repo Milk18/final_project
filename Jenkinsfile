@@ -4,7 +4,8 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    DOCKERHUB_CREDENTIALS_U = credentials('dockerhub').username
+    DOCKERHUB_CREDENTIALS_P = credentials('dockerhub').password
   }
   stages {
     stage('Build') {
@@ -14,9 +15,7 @@ pipeline {
     }
     stage('Login') {
       steps {
-        bat 'def username = DOCKERHUB_CREDENTIALS_USR'
-        bat 'def password = DOCKERHUB_CREDENTIALS_PSW'
-        bat "echo ${password} | docker login -u ${username} --password-stdin"
+        bat 'echo $DOCKERHUB_CREDENTIALS_P | docker login -u $DOCKERHUB_CREDENTIALS_U --password-stdin"
       }
     }
     stage('Push') {
