@@ -1,5 +1,28 @@
 pipeline {
-  agent any
+  agent { 
+    kubernetes {
+            label 'dind-agent'
+            yaml """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: dind
+    image: docker:dind
+    env:
+    - name: DOCKER_HOST
+      value: unix:///var/run/docker-dind.sock
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - mountPath: /var/run
+      name: docker-sock
+  volumes:
+  - name: docker-sock
+    emptyDir: {}
+"""
+  }
+  }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
@@ -9,7 +32,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t lloydmatereke/jenkins-docker-hub:2.0 .'
+        sh 'docker build -t milk49/jenkins-docker-hub:2.0 .'
       }
     }
     stage('Login') {
@@ -19,7 +42,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push lloydmatereke/jenkins-docker-hub:2.0'
+        sh 'docker push milk49/jenkins-docker-hub:2.0'
       }
     }
   }
