@@ -26,8 +26,6 @@ spec:
     stages {
          stage ('Run app') {
       steps {
-        sh 'apt install -y python3 python3-pip'
-        sh 'pip install flask pymongo requests'
         sh 'python3 flaskapp/main.py &'
       }
     }
