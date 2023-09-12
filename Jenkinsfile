@@ -7,6 +7,16 @@ pipeline {
     $env:DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
   stages {
+    stage ('Run app') {
+      steps {
+        bat 'start /B python C:\jenkins\workspace\test\flaskapp\main.py'
+      }
+    }
+    stage ('test app') {
+      steps {
+        bat 'pytest C:\jenkins\workspace\test\flaskapp\test.py'
+      }
+    }
     stage('Build') {
       steps {
         bat 'docker build -t milk49/jenkins-docker-hub:1.0 .'
