@@ -25,16 +25,19 @@ spec:
     }
     stages {
         stage('Build and Push Docker Image') {
+             when {
+                changeset 'main.py'
+            }
             steps {
                 container('dind') {
                     script {
                         sh 'dockerd &'
                         sh 'sleep 5'
-                        sh 'docker build -t milk49/profile-app:2.0 .'
+                        sh 'docker build -t milk49/profile-app:latest .'
                         withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                             sh '''
                             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                            docker push milk49/profile-app:2.0
+                            docker push milk49/profile-app:latest
                             '''
                         }
                     }
