@@ -34,7 +34,7 @@ spec:
                         withCredentials([usernamePassword(credentialsId: 'dockerHubCreds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                             sh '''
                             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                            docker push guyashkenazi/profile-app:2.0
+                            docker push milk49/profile-app:2.0
                             '''
                         }
                     }
