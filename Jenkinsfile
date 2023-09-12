@@ -24,12 +24,6 @@ spec:
         }
     }
     stages {
-        stage('Checkout Code') {
-            steps {
-                git credentialsId: 'githubCreds', url: 'https://github.com/Guyashkenazi6/profileapp.git', branch: 'main'
-            }
-        }
-
         stage('Build and Push Docker Image') {
             steps {
                 container('dind') {
