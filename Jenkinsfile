@@ -31,7 +31,7 @@ spec:
                         sh 'dockerd &'
                         sh 'sleep 5'
                         sh 'docker build -t milk49/profile-app:2.0 .'
-                        withCredentials([usernamePassword(credentialsId: 'dockerHubCreds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                             sh '''
                             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                             docker push milk49/profile-app:2.0
