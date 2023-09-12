@@ -24,6 +24,18 @@ spec:
         }
     }
     stages {
+         stage ('Run app') {
+      steps {
+        sh 'sudo apt install -y python3 python3-pip'
+        sh 'pip install flask pymongo requests'
+        sh 'python3 flaskapp/main.py &'
+      }
+    }
+    stage ('test app') {
+      steps {
+        sh 'pytest flaskapp/test.py'
+      }
+    }
         stage('Build and Push Docker Image') {
              when {
                 changeset 'main.py'
