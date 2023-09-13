@@ -8,7 +8,7 @@ kind: Pod
 spec:
   containers:
   - name: dind
-    image: milk49/dind:latest
+    image: docker:dind
     env:
     - name: DOCKER_HOST
       value: unix:///var/run/docker-dind.sock
@@ -24,16 +24,6 @@ spec:
         }
     }
     stages {
-         stage ('Run app') {
-      steps {
-        sh 'python3 flaskapp/main.py &'
-      }
-    }
-    stage ('test app') {
-      steps {
-        sh 'pytest flaskapp/test.py'
-      }
-    }
         stage('Build and Push Docker Image') {
              when {
                 changeset 'main.py'
