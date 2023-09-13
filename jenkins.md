@@ -27,8 +27,7 @@ helm install myjenkins jenkins/jenkins
 
 Get the password:
 ```
-kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
-```
+kubectl get secret --namespace default myjenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode```
 
 Get the loadbalancer ip:
 ```
