@@ -8,7 +8,7 @@ kind: Pod
 spec:
   containers:
   - name: dind
-    image: docker:dind
+    image: milk49/dind:latest
     env:
     - name: DOCKER_HOST
       value: unix:///var/run/docker-dind.sock
