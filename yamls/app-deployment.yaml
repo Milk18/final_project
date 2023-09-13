@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: main
+  template:
+    metadata:
+      labels:
+        app: main
+    spec:
+      containers:
+      - name: main
+        image: milk49/profile-app:2.0
+        ports:
+        - containerPort: 9000
