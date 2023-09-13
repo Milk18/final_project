@@ -26,7 +26,7 @@ spec:
     stages {
         stage('Build and Push Docker Image') {
              when {
-                changeset 'main.py'
+                changeset 'flaskapp/main.py'
             }
             steps {
                 container('dind') {
