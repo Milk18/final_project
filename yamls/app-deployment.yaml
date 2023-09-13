@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: main
-        image: milk49/profile-app:2.0
+        image: milk49/profile-app:latest
         ports:
         - containerPort: 9000
