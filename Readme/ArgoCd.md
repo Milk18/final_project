@@ -31,3 +31,4 @@ http://<IP-address or server-name>
 where the IP is the external-service-IP of the 'argocd-server' service
 
 Login to Argo CD UI using the username: 'admin' and and the above password
+
