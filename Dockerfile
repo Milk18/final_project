@@ -7,7 +7,7 @@ WORKDIR /flaskapp
 # Copy flaskapp directory contents into the container at /flaskapp
 COPY flaskapp /flaskapp
 
-# Install any needed packages specified in requirements.txt
+# Install needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Make port 9000 available to the world outside this container
