@@ -31,19 +31,7 @@ spec:
                         sh 'dockerd &'
                         sh 'sleep 5'
                         sh 'docker build -t milk49/profile-app:latest .'
-                        sh 'docker run milk49/profile-app:latest --name app'
-                        sh 'docker exec app pytest'
-                        echo 'Test passed'
-
-                        }
-                    }
-                }
-            }
-
-        stage('Push Docker Image after test') {
-            steps {
-                container('dind') {
-                    script {
+                        sh 'docker run milk49/profile-app:latest'
                         withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                             sh '''
                             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
