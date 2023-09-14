@@ -1,4 +1,4 @@
-## install Jenkins instance on Kubernetes
+## install Jenkins instance on Kubernetes cluster
 (based on this page: [Install Jenkins using helm](https://argo-cd.readthedocs.io/en/stable/getting_started/](https://sweetcode.io/how-to-setup-jenkins-ci-cd-pipeline-on-kubernetes-cluster-with-helm/))
 
 ### Requirements
