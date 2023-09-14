@@ -24,14 +24,13 @@ spec:
         }
     }
     stages {
-        stage('Build Docker Image and Test it') {
+        stage('Build and Push Docker Image') {
             steps {
                 container('dind') {
                     script {
                         sh 'dockerd &'
                         sh 'sleep 5'
                         sh 'docker build -t milk49/profile-app:latest .'
-                        sh 'docker run milk49/profile-app:latest'
                         withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                             sh '''
                             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
