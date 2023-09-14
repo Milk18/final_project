@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-slim
+FROM python:3.10
 
 # Set the working directory to /flaskapp
 WORKDIR /flaskapp
@@ -16,4 +16,4 @@ EXPOSE 9000
 # Run main.py when the container launches
 CMD["main.py"]
 
-ENTRYPOINT["python3"]
+ENTRYPOINT["python"]
