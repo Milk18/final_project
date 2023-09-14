@@ -13,5 +13,6 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 # Make port 9000 available to the world outside this container
 EXPOSE 9000
 
+CMD ["main.py"]
 # Run main.py when the container launches
-ENTRYPOINT ["python3", "main.py"]
+ENTRYPOINT ["python3"]
