@@ -39,6 +39,14 @@ Go to the website where the IP is the external-service-IP of the 'Jenkins' servi
 Login to jenkins using the username: 'admin' and the above password.
 
 Install the suggested plugins and follow the given instructions.
+### Create credentials
+Click on "Manage Jenkins" on the left side. \
+Click on the "Credentials" section. \
+Click on "(global)" under Domain. \
+![plot](../images/jenkinscred.png)
+click +add credentials in blue in the top right corner and create username
+with password kind both for your git repo and dockerhub. \
+The description is then crucial for the definition of the pipeline.
 
 ### Install plugins
 
@@ -47,7 +55,7 @@ Install the suggested plugins and follow the given instructions.
 Click on "Manage Jenkins" on the left side. \
 Click on the "Plugins" section. \
 Go to "Available plugins". \
-Search for: 'Blue Ocean', 'Docker plugin', 'Docker', 'Kubernetes plugin', 'Pipeline' \
+Search for: 'Blue Ocean', 'Docker plugin', 'Docker', 'Kubernetes plugin', 'Pipeline', 'Email plugin' \
 note that the multibranch workflow plugin is not supported anymore, and we now need to use the 
 'Multibranch Pipeline' job type.
 
@@ -56,7 +64,7 @@ In the Dashboard, click "+ New Item" \
 Select 'Multibranch Pipeline', give a name, and click 'ok'. \
 Give it a display name and description as you like. \
 Under 'Branch Sources' select git. \
-Enter this project url repo, and put the credentials we configured earlier.
-
+Enter this project url [repo](https://github.com/Milk18/final_project), and put the credentials we configured earlier.
+The pipeline will search for a file called "Jenkinsfile" that exists in the main branch in this repo
 
 
