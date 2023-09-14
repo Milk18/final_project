@@ -31,7 +31,8 @@ spec:
                         sh 'dockerd &'
                         sh 'sleep 5'
                         sh 'docker build -t milk49/profile-app:latest .'
-                        sh 'docker run milk49/profile-app:latest test.py '
+                        sh 'docker run milk49/profile-app:latest --name app'
+                        sh 'docker exec app pytest'
                         echo 'Test passed'
 
                         }

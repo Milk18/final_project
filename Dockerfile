@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.10
+FROM python:3.8-slim
 
 # Set the working directory to /flaskapp
 WORKDIR /flaskapp
@@ -14,6 +14,4 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 EXPOSE 9000
 
 # Run main.py when the container launches
-CMD["main.py"]
-
-ENTRYPOINT["python"]
+ENTRYPOINT["python3", "main.py"]
