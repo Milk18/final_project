@@ -1,24 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Key-Value Pairs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project</title>
+    <style>
+        body {
+            background-color: #F5DEB3; /* Creamy background color */
+            text-align: center; /* Center-align text */
+            color: white; /* Text color */
+            font-family: Arial, sans-serif; /* Specify a font */
+        }
+        h1, h2 {
+            margin: 20px 0; /* Add some space above and below headers */
+        }
+        ul {
+            list-style-type: none; /* Remove list bullets */
+            padding: 0; /* Remove default padding */
+        }
+        li {
+            margin: 5px 0; /* Add some space between list items */
+        }
+        a {
+            color: blue; /* Link color set to blue */
+            text-decoration: underline; /* Add underline to links */
+        }
+    </style>
 </head>
 <body>
     <h1>Hello, my name is Ori Uziel!</h1>
     <h1>Welcome to my profile:</h1>
+
+    <!-- Add an image -->
+    <img src="https://camo.githubusercontent.com/f101f6fbae6321965d11ae6016307eb37b6885ff7406ba0deea991b658bc04ff/68747470733a2f2f706e672e706e676974656d2e636f6d2f70696d67732f732f3236362d323636343030305f7472616e73706172656e742d636f772d686561642d706e672d666163652d6f662d612d636f772e706e67" alt="Me">
+
     <ul>
         {% for pair in urls %}
             <li><a href="{{ pair.url }}">{{ pair.text }}</a></li>
         {% endfor %}
     </ul>
 
-    <h2>Add new link:</h2>
+
+    <h2>Add a new link:</h2>
+
     <form method="POST">
         <label for="text">Text:</label>
         <input type="text" name="text" required>
         <br>
         <label for="url">URL:</label>
         <input type="text" name="url" required>
+        <br>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
         <br>
         <input type="submit" value="Add">
     </form>
