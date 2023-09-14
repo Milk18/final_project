@@ -52,5 +52,12 @@ spec:
                 }
             }
         }
+       post {
+        failure {
+            emailext (
+                to: 'milk49@walla.co.il',
+                subject: "Failed: ${currentBuild.fullDisplayName}",
+                body: "The build failed. Please check the Jenkins build log for details.",
+                attachLog: true,
     }
 }
