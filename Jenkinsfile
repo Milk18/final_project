@@ -52,6 +52,7 @@ spec:
                 }
             }
         }
+    }
        post {
         failure {
             emailext (
@@ -59,5 +60,7 @@ spec:
                 subject: "Failed: ${currentBuild.fullDisplayName}",
                 body: "The build failed. Please check the Jenkins build log for details.",
                 attachLog: true,
+            )
+        }
     }
 }
