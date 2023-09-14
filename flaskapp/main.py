@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ client = MongoClient('mongodb://mongodb:27017/')
 db = client['project']
 collection = db['urls']
 
-add_password = "ori"
+add_password = "milk"
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -33,3 +33,6 @@ def index():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=9000, debug=True)
+
+
+
