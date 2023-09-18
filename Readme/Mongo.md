@@ -30,3 +30,13 @@ To see your pods, pvc's, and svc, you can click on the main window and get a dia
 that fully shows the relations of the different resources. 
 
 ![plot](../images/argodiagram.png)
+
+### Delete everything
+See the namespace resources in the cluster
+```
+kubectl get all --namespace=db 
+```
+
+Delete all the resources on the namespace 
+```
+kubectl delete ns db

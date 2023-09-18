@@ -30,5 +30,15 @@ http://<IP-address or server-name>
 ```
 where the IP is the external-service-IP of the 'argocd-server' service
 
-Login to Argo CD UI using the username: 'admin' and and the above password
+Login to Argo CD UI using the username: 'admin' and the above password
+
+### Delete everything
+See the namespace resources 
+```
+kubectl get all --namespace=argocd
+```
+
+Delete all the resources on the namespace 
+```
+kubectl delete ns argocd
 

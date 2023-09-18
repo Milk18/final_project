@@ -37,3 +37,13 @@ under the 'HOSTNAMES' category:
 ![plot](../images/appip.png)
 
 Now you can simply access the app with the external ip and port 9000
+
+### Delete everything
+See the namespace resources 
+```
+kubectl get all --namespace=app 
+```
+
+Delete all the resources on the namespace 
+```
+kubectl delete ns app

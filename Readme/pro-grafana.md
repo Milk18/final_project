@@ -176,3 +176,14 @@ scroll down and click "Save & test" abd then Explore view
 
 from there you can choose the metric you want to monitor and run the query:
 ![plot](../images/query.png)
+
+
+### Delete everything
+See the namespace resources 
+```
+kubectl get all --namespace=monitor 
+```
+
+Delete all the resources on the namespace 
+```
+kubectl delete ns monitor

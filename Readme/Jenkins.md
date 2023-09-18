@@ -1,5 +1,5 @@
 ## install Jenkins instance on Kubernetes cluster
-(based on this page: [Install Jenkins using helm](https://argo-cd.readthedocs.io/en/stable/getting_started/](https://sweetcode.io/how-to-setup-jenkins-ci-cd-pipeline-on-kubernetes-cluster-with-helm/))
+(based on this page: [Install Jenkins using helm](https://sweetcode.io/how-to-setup-jenkins-ci-cd-pipeline-on-kubernetes-cluster-with-helm/))
 
 ### Requirements
 - Installed kubectl command-line tool.
@@ -22,17 +22,18 @@ helm repo update
 
 Install the official jenkins package:
 ```
-helm install myjenkins jenkins/jenkins
+helm install --namespace jenkins myjenkins jenkins/jenkins
 ```
 
 Get the password:
 ```
-kubectl get secret --namespace default myjenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode
+kubectl get secret --namespace jenkins myjenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode
 ```
 Get the LoadBalancer ip:
 ```
-kubectl get svc --namespace=...('default' is the default namespace for the installation) 
+kubectl get svc --namespace=jenkins 
 ```
+('default' is the default namespace for the installation, in this case we use jenkins ns) 
 
 Go to the website where the IP is the external-service-IP of the 'Jenkins' service with port 8080
 
@@ -65,6 +66,15 @@ Select 'Multibranch Pipeline', give a name, and click 'ok'. \
 Give it a display name and description as you like. \
 Under 'Branch Sources' select git. \
 Enter this project url [repo](https://github.com/Milk18/final_project), and put the credentials we configured earlier.
-The pipeline will search for a file called "Jenkinsfile" that exists in the main branch in this repo
+The pipeline will search for a file called "Jenkinsfile" that exists in the main branch in this repo.
 
+### Delete everything
+See the namespace resources 
+```
+kubectl get all --namespace=jenkins 
+```
+
+Delete all the resources on the namespace 
+```
+kubectl delete ns jenkins
 
