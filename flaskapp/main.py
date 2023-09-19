@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Connect to your MongoDB instance
 try:
-    client = MongoClient('mongodb://mongodb.db.svc.cluster.local:27017/')
+    client = MongoClient('mongodb://oriAppSvc.db.svc.cluster.local:27017/')
 except:
     client = MongoClient('mongodb://root:3yGWpZ7jeS@34.78.116.136:27017/')
 

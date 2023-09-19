@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: main
+  name: oriApp
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: main
+      app: oriApp
   template:
     metadata:
       labels:
-        app: main
+        app: oriApp
     spec:
       containers:
-      - name: main
+      - name: oriApp
         image: milk49/profile-app:latest
         ports:
         - containerPort: 9000
