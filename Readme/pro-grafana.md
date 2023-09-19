@@ -187,3 +187,4 @@ kubectl get all --namespace=monitor
 Delete all the resources on the namespace 
 ```
 kubectl delete ns monitor
+```

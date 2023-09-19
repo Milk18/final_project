@@ -41,4 +41,5 @@ kubectl get all --namespace=argocd
 Delete all the resources on the namespace 
 ```
 kubectl delete ns argocd
+```
 

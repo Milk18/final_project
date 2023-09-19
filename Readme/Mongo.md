@@ -40,3 +40,4 @@ kubectl get all --namespace=db
 Delete all the resources on the namespace 
 ```
 kubectl delete ns db
+```

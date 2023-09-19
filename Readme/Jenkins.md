@@ -5,6 +5,11 @@
 - Installed kubectl command-line tool.
 - Connected to a Kubernetes cluster - Have a kubeconfig file (default location is ~/.kube/config).
 - Install helm.
+
+### Create namespace
+```
+kubectl create namespace jenkins
+```
  
 ### Install Jenkins
 ```
@@ -19,10 +24,41 @@ Update your repo:
 ```
 helm repo update
 ```
-
-Install the official jenkins package:
+Create a values.yaml file for the needed plugins (remember to update them later):
 ```
-helm install --namespace jenkins myjenkins jenkins/jenkins
+nano values.yaml
+```
+Paste the following code:
+```
+controller:
+    installPlugins:
+      - kubernetes:4029.v5712230ccb_f8
+      - workflow-aggregator:596.v8c21c963d92d
+      - git:5.2.0
+      - configuration-as-code:1700.v6f448841296e
+      - gitlab-plugin:1.7.16
+      - blueocean:1.27.7
+      - workflow-multibranch:756.v891d88f2cd46
+      - login-theme:46.v36f624efb_23d
+      - prometheus:2.3.3
+      - github:1.37.3
+      - github-oauth:588.vf696a_350572a_
+      - email-ext:2.101
+      - docker-plugin:1.5
+      - docker-workflow:572.v950f58993843
+    installLatestPlugins: true
+    installLatestSpecifiedPlugins: true
+```
+Save and exit.
+
+Install the official jenkins package with the new values file:
+```
+helm install --namespace jenkins myjenkins jenkins/jenkins -f values.yaml
+```
+Change the myjenkins service type to LoadBalancer:
+
+```
+kubectl patch svc myjenkins -p '{"spec": {"type": "LoadBalancer"}}' -n jenkins
 ```
 
 Get the password:
@@ -74,7 +110,8 @@ See the namespace resources
 kubectl get all --namespace=jenkins 
 ```
 
-Delete all the resources on the namespace 
+Delete all the resources on the namespace using helm 
 ```
-kubectl delete ns jenkins
+helm uninstall myjenkins -n jenkins
+```
 
