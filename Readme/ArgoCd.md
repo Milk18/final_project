@@ -40,6 +40,6 @@ kubectl get all --namespace=argocd
 
 Delete all the resources on the namespace 
 ```
-kubectl delete ns argocd
+kubectl delete -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 

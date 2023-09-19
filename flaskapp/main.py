@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 # Connect to your MongoDB instance
 client = MongoClient('mongodb://mongodb.db.svc.cluster.local:27017/')
-db = client['project']
-collection = db['urls']
+db = client['ori_project']
+collection = db['ori_urls']
 
 add_password = "milk"
 

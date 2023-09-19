@@ -186,5 +186,6 @@ kubectl get all --namespace=monitor
 
 Delete all the resources on the namespace 
 ```
-kubectl delete ns monitor
+kubectl delete -f grafana.yaml --namespace=monitor
+helm uninstall https://prometheus-community.github.io/helm-charts --namespace=monitor
 ```

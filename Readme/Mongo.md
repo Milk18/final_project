@@ -39,5 +39,7 @@ kubectl get all --namespace=db
 
 Delete all the resources on the namespace 
 ```
-kubectl delete ns db
+kubectl delete pvc mongodb-data-mongodb-0 -n db
+kubectl delete svc mongodb -n db
+kubectl delete statefulset mongodb -n db
 ```

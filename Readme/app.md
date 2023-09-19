@@ -46,6 +46,6 @@ kubectl get all --namespace=app
 
 Delete all the resources on the namespace 
 ```
-kubectl delete ns app
-
+kubectl delete deployment main
+kubectl delete svc main
 ```
