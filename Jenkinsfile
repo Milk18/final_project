@@ -8,7 +8,7 @@ kind: Pod
 spec:
   containers:
   - name: dind
-    image: drpsychick/dind-buildx-helm
+    image: docker:dind
     alwaysPull: true
     env:
     - name: DOCKER_HOST
